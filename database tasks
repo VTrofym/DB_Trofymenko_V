@@ -1,0 +1,25 @@
+SELECT * FROM clients
+WHERE name LIKE 'b%'
+
+SELECT * FROM clients
+WHERE year_of_birth BETWEEN 2000 AND 2010
+
+SELECT * FROM cars
+WHERE manufacturer='audi'
+
+SELECT * FROM cars
+WHERE id_client=1
+
+SELECT cars.manufacturer, cars.model FROM cars
+JOIN clients ON cars.id_client=clients.id
+WHERE clients.year_of_birth<2000
+
+SELECT name, year_of_birth FROM clients
+WHERE year_of_birth=(SELECT MIN(year_of_birth) FROM clients)
+
+SELECT COUNT(*) AS amount_of_cars FROM cars
+WHERE id_client=1
+
+SELECT clients.name, clients.tel, clients.year_of_birth FROM clients
+JOIN cars ON cars.id_client=clients.id
+WHERE cars.year=(SELECT MAX(year) FROM cars)
